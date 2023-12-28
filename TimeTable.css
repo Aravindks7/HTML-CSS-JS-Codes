@@ -1,0 +1,46 @@
+body {
+    font-family: 'Roboto';
+}
+
+.table-wrap {
+    margin: 10px 160px 20px;
+    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+}
+
+h2 {
+    background: linear-gradient(to right, #f32170,#ff6b08, #cf23cf, #eedd44);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+}
+
+.table-style {
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: normal;
+    border: none;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    white-space: nowrap;
+    background-color: white;
+}
+
+td, th {
+    text-align: center;
+    padding: 15px;
+}
+
+
+tr, td {
+    background: #F8F8F8;
+    border-right: 1px solid #E6E4E4;
+}
+
+.table-style thead th {
+    background: #7bbc61;
+    color: white
+}
+
+.table-sytle td {
+    background: #7bbc61;
+}
