@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/PopupBoxes.css">
+    <title>Popup Box</title>
+  </head>
+  <body>
+      <h1 id="heading">Popup Box Operations</h1>
+        <button class="button-17" role="button" onclick="displayDate()">Today's Date</button>
+        <button class="button-17" role="button" onclick="promtDemo()">Factorial of a number</button>
+        <button class="button-17" role="button" onclick="alertDemo()" onmouseout="mouseOut()">Multiplication table</button>
+        <button class="button-17" role="button" onclick="confirmDemo()" onmouseout="mouseOut()">Sum of n numbers</button>
+      </div>
+
+    <script>
+      const displayDate = () => {
+        date = new Date();
+        day = date.getDate();
+        month = date.getMonth() + 1;
+        year = date.getFullYear();
+        window.alert(`Today's date is ${day}/${month}/${year}.`);
+      };
+
+      const promtDemo = () => {
+        let n = window.prompt("Enter a number...");
+        console.log("your number is " + n);
+        let fact = 1;
+        for (let i = n; i > 1; i--) {
+          fact *= i;
+        }
+        window.alert(" The factorial of " + n + " is " + fact + ".");
+      };
+
+      const alertDemo = () => {
+        let n = window.prompt("Enter a number...");
+        str = "";
+        for (let i = 1; i <= 10; i++) {
+          str += `${n} x ${i} = ${n * i} \n`;
+        }
+        window.alert("Multiplication table of " + parseInt(n) + "\n" + str);
+      };
+
+      const confirmDemo = () => {
+        let num1 = window.prompt("Enter number 1");
+        if (
+          window.confirm(
+            "Press OK if number 2 = 10\nPress Cancel if number 2 = 20"
+          )
+        ) {
+          num2 = 10;
+        } else {
+          num2 = 20;
+        }
+        let num3 = window.prompt("Enter number 3");
+        num1 = parseInt(num1);
+        num2 = parseInt(num2);
+        num3 = parseInt(num3);
+        window.alert(
+          num1 + " + " + num2 + " + " + num3 + " = " + (num1 + num2 + num3)
+        );
+      };
+    </script>
+  </body>
+</html>
