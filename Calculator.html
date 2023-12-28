@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      #calculator {
+        justify-self: center;
+        background-color: #393646;
+        border-radius: 8px;
+        padding: 8px;
+        font-family: "Courier New", Courier, monospace;
+        box-shadow: 2px 4px 8px black; /* offset-x offset-y shadow-radius color*/
+      }
+
+      button {
+        background: #F4EEE0;
+        color: rgb(50, 50, 50);
+        border: none;
+        border-radius: 2px;
+        padding: 8px;
+        width: calc(4em + 8px);
+        justify-content: center;
+        margin: 4px 2px;
+      }
+
+      .last {
+        width: calc(2em + 8px);
+      }
+
+      #clear,
+      #equals {
+        background-color: #6D5D6E;
+      }
+
+      #display {
+        display: inline-block;
+        background-color: white;
+        padding: 8px;
+        text-align: end;
+        margin: 4px 2px;
+        border-radius: 2px;
+        color: black;
+        width: calc(12em + 4px);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="calculator">
+        <div>
+          <div id="display">0</div>
+          <button type="button" class="last" id="clear">C</button>
+        </div>
+        <div>
+          <button type="button">1</button>
+          <button type="button">2</button>
+          <button type="button">3</button>
+          <button type="button" class="last">/</button>
+        </div>
+        <div>
+          <button type="button">4</button>
+          <button type="button">5</button>
+          <button type="button">6</button>
+          <button type="button" class="last">-</button>
+        </div>
+        <div>
+          <button type="button">7</button>
+          <button type="button">8</button>
+          <button type="button">9</button>
+          <button type="button" class="last">+</button>
+        </div>
+        <div>
+          <button type="button">.</button>
+          <button type="button">0</button>
+          <button type="button" id="equals">=</button>
+          <button type="button" class="last">*</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      var buttons = Array.prototype.slice.call(
+        document.getElementsByTagName("button")
+      );
+      var display = document.getElementById("display");
+      var operation = undefined;
+      var first = undefined;
+      var second = undefined;
+      var result = undefined;
+      const handler = (event) => {
+        let value = event.target.innerHTML;
+        if (isNaN(value)) {
+          if (first !== undefined)
+            switch (value) {
+              case "+":
+              case "-":
+              case "/":
+              case "*":
+                operation = value;
+                break;
+              case "C":
+                operation = undefined;
+                first = undefined;
+                second = undefined;
+                result = undefined;
+                break;
+              case ".":
+                display.innerHTML = operation === undefined ? (first * 1.0) : (second * 1.0);
+
+                break;
+              case "=":
+                if (
+                  first !== undefined &&
+                  second !== undefined &&
+                  operation !== undefined
+                ) {
+                  switch (operation) {
+                    case "*":
+                      result = first * second;
+                      break;
+                    case "/":
+                      result = first / second;
+                      break;
+                    case "+":
+                      result = first + second;
+                      break;
+                    case "-":
+                      result = first - second;
+                      break;
+                  }
+                }
+
+                break;
+              default:
+                console.warn(value);
+                break;
+            }
+        } else {
+          if (operation === undefined) {
+            if (first === undefined) first = parseInt(value);
+            else first = parseInt(first + value);
+          } else {
+            if (second === undefined) second = parseInt(value);
+            else second = parseInt(second + value);
+          }
+        }
+
+        if (first === undefined) {
+          display.innerHTML = 0;
+        } else if (first !== undefined && operation === undefined)
+          display.innerHTML = first;
+          else if(second !== undefined) {
+            display.innerHTML = second;
+          }
+          if(result !== undefined) {
+            display.innerHTML = result;
+          }
+        
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", handler);
+        button.addEventListener("touch", handler);
+      });
+    </script>
+  </body>
+</html>
